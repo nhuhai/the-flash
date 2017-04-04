@@ -6,7 +6,7 @@
   "author": "Hai Nguyen <nhuhai.h.nguyen@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "4.14.0",
