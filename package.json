@@ -2,6 +2,7 @@
   "name": "the-flash",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "back-end",
   "repository": "git@github.com:nhuhai/the-flash.git",
   "author": "Hai Nguyen <nhuhai.h.nguyen@gmail.com>",
   "license": "MIT",
@@ -9,7 +10,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "4.14.0",
-    "hbs": "4.0.0"
+    "express": "^4.16.3",
+    "hbs": "^4.0.1"
   }
 }
