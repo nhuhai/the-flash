@@ -7,12 +7,23 @@
   "author": "Hai Nguyen <nhuhai.h.nguyen@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start-dev": "nodemon --exec \"node server.js\"",
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha **/*.test.js",
+    "test-watch": "nodemon --exec \"npm test\""
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "hbs": "^4.0.1",
+    "lodash": "^4.17.5",
     "mongodb": "^3.0.6",
     "mongoose": "^5.0.15"
+  },
+  "devDependencies": {
+    "expect": "^22.4.3",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.3",
+    "supertest": "^3.0.0"
   }
 }

@@ -1,61 +1,30 @@
-const express = require('express')
-const hbs = require('hbs')
-const fs = require('fs')
+require('./config/config');
 
-const port = process.env.PORT || 3000
-const app = express()
+const _ = require('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
+const logAndSaveRequest = require('./middlewares/log-and-save-request');
+const serveViews = require('./serve-views');
+const todoApis = require('./todos/todos-api');
 
-hbs.registerPartials(__dirname + '/views/partials')
-app.set('view engine', 'hbs')
+const { mongoose } = require('./db/mongoose');
+const { User } = require('./models/user');
+const { ObjectID } = require('mongodb');
 
-app.use((req, res, next) => {
-  const now = new Date().toString()
-  const log = `${now}: ${req.method} ${req.url}`
+const port = process.env.PORT;
+const app = express();
 
-  console.log(log)
-  
-  fs.appendFile('server.log', log + '\n', (err) => {
-    if (err) {
-      console.log('Unable to appen to server.log')
-    }
-  })
+app.use(logAndSaveRequest);
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 
-  next()
-})
+serveViews(app);
+todoApis(app);
 
-// app.use((req, res, next) => {
-//   res.render('maintenance.hbs')
-// })
-
-app.use(express.static(__dirname + '/public'))
-
-hbs.registerHelper('getCurrentYear', () => {
-  return new Date().getFullYear()
-})
-
-hbs.registerHelper('screamIt', (text) => {
-  return text.toUpperCase()
-})
-
-app.get('/', (req, res) => {
-  res.render('home.hbs', {
-    pageTitle: 'Home Page',
-    welcomeMessage: 'welcome to my website'
-  })
-})
-
-app.get('/about', (req, res) => {
-  res.render('about.hbs', {
-    pageTitle: 'About Page'
-  })
-})
-
-app.get('/bad', (req, res) => {
-  res.send({
-    errorMessage: 'Unable to handle request'
-  })
-})
-
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server is up on port ${port}`)
 })
+
+module.exports = {
+  app
+};
