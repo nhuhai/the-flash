@@ -3,6 +3,7 @@ require('./config/config');
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const logAndSaveRequest = require('./middlewares/log-and-save-request');
 const serveViews = require('./serve-views');
 const itemsApi = require('./api/items');
@@ -17,6 +18,7 @@ const app = express();
 app.use(logAndSaveRequest);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
+app.use(cors());
 
 serveViews(app);
 itemsApi(app);
