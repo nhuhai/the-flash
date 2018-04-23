@@ -4,7 +4,7 @@ module.exports = function logAndSaveRequest (req, res, next) {
   const now = new Date().toString();
   const log = `${now}: ${req.method} ${req.url}`;
 
-  console.log(log);
+  // console.log(log);
 
   fs.appendFile('server.log', log + '\n', (err) => {
     if (err) {

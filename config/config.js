@@ -5,8 +5,8 @@ const { env: processEnv } = process;
 
 if (env === 'development') {
   processEnv.PORT = 3000;
-  processEnv.MONGODB_URI = 'mongodb://localhost:27017/TodoApp';
+  processEnv.MONGODB_URI = 'mongodb://localhost:27017/BookstoreApp';
 } else if (env === 'test') {
   processEnv.PORT = 3001;
-  processEnv.MONGODB_URI = 'mongodb://localhost:27017/TodoAppTest';
+  processEnv.MONGODB_URI = 'mongodb://localhost:27017/BookstoreAppTest';
 }

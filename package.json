@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon --exec \"node server.js\"",
-    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha **/*.test.js",
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha **/items/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "dependencies": {
