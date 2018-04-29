@@ -4,11 +4,22 @@ const { Item } = require('../models/item');
 
 module.exports = function itemsApi (app) {
   app.post('/items', (req, res) => {
-    const item = new Item({
-      name: req.body.name
-    });
+    const item = _.pick(req.body, [
+      'name',
+      'price',
+      'price1',
+      'price2',
+      'price3',
+      'price4',
+      'provider',
+      'quantity'
+    ]);
 
-    item.save().then((doc) => {
+    item.modifiedAt = new Date().getTime();
+
+    const itemModel = new Item(item);
+
+    itemModel.save().then((doc) => {
       res.send(doc);
     }, (e) => {
       res.status(400).send(e);
