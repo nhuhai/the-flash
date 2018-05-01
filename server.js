@@ -13,6 +13,7 @@ const logAndSaveRequest = require('./middlewares/log-and-save-request');
 // const itemsApi = require('./api/items');
 
 const { mongoose } = require('./db/mongoose');
+require('./config/passport');
 
 const port = process.env.PORT;
 const isProduction = process.env.NODE_ENV === 'production';
@@ -28,7 +29,7 @@ app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({
-  secret: 'green-arrow',
+  secret: 'the-flash',
   cookie: { maxAge: 60000 },
   resave: false,
   saveUninitialized: false
