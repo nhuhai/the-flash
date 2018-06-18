@@ -7,9 +7,10 @@
   "author": "Hai Nguyen <nhuhai.h.nguyen@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
-    "start-dev": "nodemon --exec \"node server.js\"",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha **/items/*.test.js",
+    "stop": "lsof -ti :3000 | xargs kill",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "dependencies": {
@@ -27,7 +28,8 @@
     "mongoose": "^5.0.15",
     "mongoose-unique-validator": "^2.0.1",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "slug": "^0.9.1"
   },
   "devDependencies": {
     "expect": "^22.4.3",
